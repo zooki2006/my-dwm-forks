@@ -30,19 +30,19 @@ static const Rule rules[] = {
          *      WM_NAME(STRING) = title
          */
  	/* class      instance    title       tags mask     isfloating   monitor    scratch  */
-	{ "Gimp",     NULL,       NULL,       0,            0,           -1,        0  },
-	{ "Nyrna",    NULL,       NULL,       0,            1,           -1,       'm' },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },     
-	{ "terminal-scratchpad",  NULL,       0,            1,           -1,       's' },     
-	{ NULL,  "dwmtabbed",     NULL,       0,            1,           -1,       'n' },     
-	{ NULL,  "discordtabbed", NULL,       0,            1,           -1,       'd' },     
-	{ NULL,       NULL,   "splistbinds",  0,            1,           -1,       'l' },    
-	{ "Mullvad VPN", NULL,    NULL,       0,            1,           -1,       'r' },    
-	{ "spcmus",   NULL,      NULL,        0,            1,           -1,       'c' },
-	{ "spncspot", NULL,      NULL,  0,            1,           -1,       'w' },
-	{ "sppod",    NULL,      NULL,     0,            1,           -1,       'a' },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1,       },// 0  },
+	{ "Nyrna",    NULL,       NULL,       0,            1,           -1,       },//'m' },
+	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       },//'s' },     
+	{ "terminal-scratchpad",  NULL,       0,            1,           -1,       },//'s' },     
+	{ NULL,  "dwmtabbed",     NULL,       0,            1,           -1,       },//'n' },     
+	{ NULL,  "discordtabbed", NULL,       0,            1,           -1,       },//'d' },     
+	{ NULL,       NULL,   "splistbinds",  0,            1,           -1,       },//'l' },    
+	{ "Mullvad VPN", NULL,    NULL,       0,            1,           -1,       },//'r' },    
+	{ "spcmus",   NULL,      NULL,        0,            1,           -1,       },//'c' },
+	{ "spncspot", NULL,      NULL,        0,            1,           -1,       },//'w' },
+	{ "sppod",    NULL,      NULL,        0,            1,           -1,       },//'a' },
 
-	{ "discord",  NULL,      "Discord Updater",  0,     1,           -1,        0 }, 
+	{ "discord",  NULL,      "Discord Updater",  0,     1,           -1,       },// 0 }, 
 	/* steam fixes */
 /*	{ "Steam",    NULL,       NULL,       0,            1,           -1,       'z' }, */
 //	{ "Steam",    NULL,       NULL,       0,            1,           -1,        0 }, 
@@ -51,7 +51,7 @@ static const Rule rules[] = {
 //	{ "Steam",    NULL,     "-",    ~0,           1,           -1,        0  }, 
 //	{ "Steam",    NULL,     "Updating",    ~0,           1,           -1,        0  }, 
 //	{ "Steam",    NULL,     "Ready",    ~0,           1,           -1,        0  }, 
- 	{ NULL,	     "keepassxc", NULL,	       0,	    1,           -1,       'x' },
+ 	{ NULL,	     "keepassxc", NULL,	       0,	    1,           -1,       },//'x' },
  /*	{ NULL,	     "Modded Slay the Spire", NULL,	    0,	    1,           -1,       0 }, */
 	/* class      instance    title       tags mask     isfloating   monitor */
 /*  	{ "Gimp",     NULL,       NULL,           0,            1,           -1 },
@@ -131,21 +131,29 @@ static const char *lockcmd[] = {"manlock.sh", NULL };
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
-static const char *scratchpad[] = { "Scratchpad.sh", "class", "terminal-scratchpad", "st", "-c", "terminal-scratchpad", NULL };
+
+
+/* scratchpads sh */
+static const char *scratchpad[] = { "Scratchpad.sh", "class", "terminal-scratchpad", "st", "-c", "terminal-scratchpad", "-g", "120x34", NULL };
+static const char *cmuspad[] = { "Scratchpad.sh", "class", "spcmus", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+static const char *spotpad[] = { "Scratchpad.sh", "class", "spncspot", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL };
+static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
+static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "nyrna", NULL };
+static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
-static const char *listcmd[] = {"l", "st", "-t", "splistbinds", "-e", "binds.sh", NULL }; 
-static const char *cmuscmd[] = {"c", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
-static const char *podcmd[] = {"a", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL }; 
-static const char *ncspotcmd[] = {"w", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL }; 
-static const char *steamcmd[] = {"z", "steam", NULL }; 
-static const char *keycmd[] = {"x", "keepassxc", NULL }; 
-static const char *nyrnacmd[] = {"m", "nyrna", NULL };
-static const char *mullvadcmd[] = {"r", "mullvad-vpn", NULL };
-static const char *tabbedcmd[] = {"n", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
-static const char *discordcmd[] = {"d", "discordtabbed.sh", NULL };
+//static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
+//static const char *listcmd[] = {"l", "st", "-t", "splistbinds", "-e", "binds.sh", NULL }; 
+//static const char *cmuscmd[] = {"c", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+//static const char *podcmd[] = {"a", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL }; 
+//static const char *ncspotcmd[] = {"w", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL }; 
+//static const char *steamcmd[] = {"z", "steam", NULL }; 
+//static const char *keycmd[] = {"x", "keepassxc", NULL }; 
+//static const char *nyrnacmd[] = {"m", "nyrna", NULL };
+//static const char *mullvadcmd[] = {"r", "mullvad-vpn", NULL };
+//static const char *tabbedcmd[] = {"n", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
+//static const char *discordcmd[] = {"d", "discordtabbed.sh", NULL };
 //static const char *firefox[] = {"x", "keepassxc", NULL }; 
 //static const char *noisecmd[] = {"x", "noisetorch", NULL }; 
 
@@ -155,6 +163,11 @@ static Key keys[] = {
 	/* modifier                     iey        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = scratchpad } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = cmuspad } },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = spotpad } },
+	{ MODKEY|ControlMask,           XK_a,      spawn,          {.v = podpad } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = nyrnapad } },
+	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
