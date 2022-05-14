@@ -162,6 +162,7 @@ static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "st
 
 #include "push.c"
 #include "center.c"
+#include "show.c"
 static Key keys[] = {
 	/* modifier                     iey        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -214,7 +215,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[2]} },
 
-//	{ MODKEY|ControlMask,           XK_s,      show,           {0} },
+	{ MODKEY|ControlMask,           XK_s,      show,           {0} },
 //	{ MODKEY,                       XK_s,      hide,           {0} },
 	
 /*	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
