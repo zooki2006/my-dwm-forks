@@ -142,7 +142,7 @@ static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "
 static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "nyrna", NULL };
 static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
 static const char *dispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
-static const char *steampad[] = { "Scratchpad.sh", "class", "Steam", "steam", NULL };
+static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
@@ -173,6 +173,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = dispad } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = steampad } },
+	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
