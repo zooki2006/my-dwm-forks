@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	{ "spcmus",   NULL,      NULL,        0,            1,           -1,       },//'c' },
 	{ "spncspot", NULL,      NULL,        0,            1,           -1,       },//'w' },
 	{ "sppod",    NULL,      NULL,        0,            1,           -1,       },//'a' },
+	{ "WebCord",  NULL,      NULL,        0,            1,           -1,       },//0 },
 
 	{ "discord",  NULL,      "Discord Updater",  0,     1,           -1,       },// 0 }, 
 	/* steam fixes */
@@ -140,6 +141,7 @@ static const char *spotpad[] = { "Scratchpad.sh", "class", "spncspot", "st", "-c
 static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
 static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "nyrna", NULL };
 static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
+static const char *dispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
@@ -168,6 +170,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_a,      spawn,          {.v = podpad } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = nyrnapad } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = dispad } },
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
