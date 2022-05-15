@@ -33,7 +33,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1,       },// 0  },
 	{ "Nyrna",    NULL,       NULL,       0,            1,           -1,       },//'m' },
 	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       },//'s' },     
-	{ "terminal-scratchpad",  NULL,       0,            1,           -1,       },//'s' },     
+	{ "terminal-scratchpad",  NULL,  NULL,     0,            1,           -1,       },//'s' },     
 	{ NULL,  "dwmtabbed",     NULL,       0,            1,           -1,       },//'n' },     
 	{ NULL,  "discordtabbed", NULL,       0,            1,           -1,       },//'d' },     
 	{ NULL,       NULL,   "splistbinds",  0,            1,           -1,       },//'l' },    
@@ -141,8 +141,10 @@ static const char *spotpad[] = { "Scratchpad.sh", "class", "spncspot", "st", "-c
 static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
 static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "nyrna", NULL };
 static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
-static const char *dispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
+static const char *webdispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
+static const char *dispad[] = {"Scratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
 static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
+static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
@@ -174,6 +176,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = dispad } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = steampad } },
+	{ MODKEY,                       XK_bracketleft,  spawn,     {.v = mullpad } },
 	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
