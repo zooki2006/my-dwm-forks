@@ -833,8 +833,9 @@ void
 focusin(XEvent *e)
 {
 	XFocusChangeEvent *ev = &e->xfocus;
-
-	if (selmon->sel && ev->window != selmon->sel->win)
+	//tabbed fix
+	//if (selmon->sel && ev->window != selmon->sel->win)
+	if (selmon->sel && ev->window != selmon->sel->win && wintoclient(ev->window))
 		setfocus(selmon->sel);
 }
 
