@@ -15,11 +15,20 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_white[]       = "#ffffff";
+static const char col_pink[]        = "#f5a9b8";
+static const char col_pink2[]       = "#f890a5";
+static const char col_blue[]        = "#00365f";
+static const char col_purple[]      = "#3c325f";
+static const char col_purple2[]     = "#8167da";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
+
+	//[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	/* [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  }, */
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	//[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_purple, col_purple2  },
 //	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
 };
 
@@ -109,7 +118,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 
 /* mercy cmds */
 /* rofi/dmenu */
@@ -119,6 +128,7 @@ static const char *i3dmenucmd[] = { "i3-dmenu-desktop", NULL };
 static const char *dmenutraycmd[]  = { "dmenu-tray.sh", NULL };
 /* programs */
 /* static const char *steamcmd[] = { "steam", NULL }; */
+static const char *rofisteamcmd[] = { "rofi-steam.sh", NULL }; 
 
 /* static const char *webcmd[] = {"qutebrowser", NULL };
  * static const char *secwebcmd[] = {"firefox", NULL }; */
@@ -177,6 +187,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = dispad } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = steampad } },
+	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = rofisteamcmd } },
 	{ MODKEY,                       XK_bracketleft,  spawn,     {.v = mullpad } },
 	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
@@ -313,7 +324,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = dmenutraycmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY|ShiftMask, Button1,        resizemouse,    {0} },
+	//{ ClkClientWin,         MODKEY|ShiftMask, Button1,        resizemouse,    {0} },
 	{ ClkClientWin,         MODKEY, Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
