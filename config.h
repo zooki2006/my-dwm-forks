@@ -156,6 +156,7 @@ static const char *webdispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord
 static const char *dispad[] = {"Scratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
 static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
 static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
+static const char *tabbedpad[] = {"Scratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
 
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
@@ -194,6 +195,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
 //	{ MODKEY|ControlMask,           XK_r,      togglescratch,  {.v = tabbedcmd } },
+	{ MODKEY|ControlMask,           XK_r,      spawn,          {.v = tabbedpad } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = dmenutraycmd }}, 
         { MODKEY,                       XK_F4,     spawn,          SHCMD("amixer set Capture toggle") },
         { MODKEY|ShiftMask,             XK_f,     spawn,          SHCMD("wmctrl -r ':ACTIVE:' -b toggle,fullscreen") },
