@@ -158,6 +158,10 @@ static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "st
 static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
 static const char *tabbedpad[] = {"Scratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
 
+static const char *dynamicinpad[] = {"Scratchpadfiledynamic.sh", "1", NULL };
+static const char *dynamicoutpad[] = {"Scratchpadfiledynamic.sh", "0", NULL };
+static const char *dynamicnamecmd[] = {"Scratchpaddynamiclist.sh"};
+
 /* scratchpads */
 /*First arg only serves to match against key in rules*/
 //static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
@@ -188,10 +192,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = dispad } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = keepassxcpad } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = steampad } },
+	{ MODKEY,                       XK_grave,  spawn,          {.v = dynamicinpad } },
+	{ MODKEY|ShiftMask,             XK_grave,  spawn,          {.v = dynamicoutpad } },
+	{ MODKEY|ControlMask,           XK_grave,  spawn,          {.v = dynamicnamecmd } },
 	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = rofisteamcmd } },
-	{ MODKEY,                       XK_bracketleft,  spawn,     {.v = mullpad } },
+	{ MODKEY,                       XK_bracketleft, spawn,     {.v = mullpad } },
 	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pkill -USR1 redshift")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
 //	{ MODKEY|ControlMask,           XK_r,      togglescratch,  {.v = tabbedcmd } },
