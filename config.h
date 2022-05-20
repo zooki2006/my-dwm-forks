@@ -51,6 +51,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,   "splistbinds",  0,            1,           -1,       },//'l' },    
 	{ "Mullvad VPN", NULL,    NULL,       0,            1,           -1,       },//'r' },    
 	{ "spcmus",   NULL,      NULL,        0,            1,           -1,       },//'c' },
+	{ "spncmpcpp",   NULL,      NULL,        0,            1,           -1,       },//'c' },
 	{ "spncspot", NULL,      NULL,        0,            1,           -1,       },//'w' },
 	{ "sppod",    NULL,      NULL,        0,            1,           -1,       },//'a' },
 	{ "WebCord",  NULL,      NULL,        0,            1,           -1,       },//0 },
@@ -149,7 +150,8 @@ static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 
 /* scratchpads sh */
 static const char *scratchpad[] = { "Scratchpad.sh", "class", "terminal-scratchpad", "st", "-c", "terminal-scratchpad", "-g", "120x34", NULL };
-static const char *cmuspad[] = { "Scratchpad.sh", "class", "spcmus", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+//static const char *cmuspad[] = { "Scratchpad.sh", "class", "spcmus", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+static const char *mpcpppad[] = { "Scratchpad.sh", "class", "spncmpcpp", "st", "-c", "spncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
 static const char *spotpad[] = { "Scratchpad.sh", "class", "spncspot", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL };
 static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
 static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "nyrna", NULL };
@@ -187,7 +189,8 @@ static Key keys[] = {
 	/* modifier                     iey        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = scratchpad } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = cmuspad } },
+	//{ MODKEY,                       XK_a,      spawn,          {.v = cmuspad } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = mpcpppad } },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = spotpad } },
 	{ MODKEY|ControlMask,           XK_a,      spawn,          {.v = podpad } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = nyrnapad } },
@@ -213,6 +216,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,      spawn,          SHCMD("dmenu_websearch")},
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("dmenu_bookmarks_menu")},
 	{ MODKEY,                       XK_m,  	   spawn,          SHCMD("nyrna -t")}, 
+ 	{ MODKEY,                       XK_Tab,    view,           {0} },
 //	{ MODKEY,                       XK_w,      togglescratch,  {.v = discordcmd } },
 /*	{ MODKEY|ShiftMask,             XK_m,  	   spawn,          {.v = nyrna } }, */ 
 	{ MODKEY,                       XK_e,      spawn,          {.v = webcmd } },
@@ -229,6 +233,7 @@ static Key keys[] = {
 //	{ MODKEY|ControlMask,           XK_k,      focusstackhid,  {.i = -1 } },
 //	{ Mod1Mask,           XK_Tab,      focusstackhid,  {.i = -1 } },
 	{ Mod1Mask,           XK_Tab,      focusstack,  {.i = -1 } },
+	{ Mod1Mask|ShiftMask,           XK_Tab,      focusstack,  {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_j,      pushdown,       {0} },
 	{ MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = +1 } },
@@ -237,8 +242,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,             		XK_c, 	   center,           {0} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("sleep 10 && pkill -RTMIN+25 dwmblocks")},
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[2]} },
