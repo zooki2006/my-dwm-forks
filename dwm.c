@@ -2189,6 +2189,18 @@ fillscreen(const Arg *arg){
 	resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 	XRaiseWindow(dpy, c->win);
 }
+void
+show(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+
+	//XMapWindow(dpy, selmon->sel->win);
+	setclientstate(selmon->sel, NormalState);
+	//arrange(selmon->sel->mon);
+}
+
+
 int
 main(int argc, char *argv[])
 {
