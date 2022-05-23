@@ -181,7 +181,7 @@ static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
-static void monocle(Monitor *m);
+//static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -200,7 +200,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void setlayout(const Arg *arg);
+//static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
@@ -209,7 +209,7 @@ static void sigchld(int unused);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
-static void tile(Monitor *);
+//static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -1140,7 +1140,7 @@ maprequest(XEvent *e)
 	if (!wintoclient(ev->window))
 		manage(ev->window, &wa);
 }
-
+/*
 void
 monocle(Monitor *m)
 {
@@ -1150,12 +1150,12 @@ monocle(Monitor *m)
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
-	if (n > 0) /* override layout symbol */
+	if (n > 0) // override layout symbol 
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 }
-
+*/
 void
 motionnotify(XEvent *e)
 {
@@ -1537,7 +1537,7 @@ setfullscreen(Client *c, int fullscreen)
 		arrange(c->mon);
 	}
 }
-
+/*
 void
 setlayout(const Arg *arg)
 {
@@ -1551,7 +1551,7 @@ setlayout(const Arg *arg)
 	else
 		drawbar(selmon);
 }
-
+*/
 /* arg > 1.0 will set mfact absolutely */
 void
 setmfact(const Arg *arg)
@@ -1710,7 +1710,7 @@ tagmon(const Arg *arg)
 		return;
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
-
+/*
 void
 tile(Monitor *m)
 {
@@ -1738,7 +1738,7 @@ tile(Monitor *m)
 				ty += HEIGHT(c);
 		}
 }
-
+*/
 void
 togglebar(const Arg *arg)
 {
