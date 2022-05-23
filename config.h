@@ -54,9 +54,10 @@ static const Rule rules[] = {
          */
  	/* class      instance    title       tags mask     isfloating   monitor    scratch  */
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1,       },// 0  },
+	{ "steam",   "steam",   "Steam",      9,            0,           -1,       },// 0  },
 	{ "Nyrna",    NULL,       NULL,       0,            1,           -1,       },//'m' },
 	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       },//'s' },     
-	{ "terminal-scratchpad",  NULL,  NULL,     0,            1,           -1,       },//'s' },     
+	{ "terminal-scratchpad",  NULL,  NULL, 0,            1,           -1,       },//'s' },     
 	{ NULL,  "dwmtabbed",     NULL,       0,            1,           -1,       },//'n' },     
 	{ NULL,  "discordtabbed", NULL,       0,            1,           -1,       },//'d' },     
 	{ NULL,       NULL,   "splistbinds",  0,            1,           -1,       },//'l' },    
