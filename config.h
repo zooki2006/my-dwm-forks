@@ -23,16 +23,27 @@ static const char col_pink2[]       = "#f890a5";
 static const char col_blue[]        = "#00365f";
 static const char col_purple[]      = "#3c325f";
 static const char col_purple2[]     = "#8167da";
+static const char col_darkblue[]    = "#1E242D";
+//static const char col_darkishblue[] = "#243143";
+static const char col_darkishblue[] = "#161b23";
 
-static const char *colors[][3]      = {
+//static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 
 	//[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+//	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	//[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeSel]  = { col_gray4, col_purple, col_purple2  },
+//	[SchemeSel]  = { col_gray4, col_purple, col_purple2  },
 //	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
+//};
+
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+//	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_darkishblue, col_darkishblue },
+	[SchemeSel]  = { col_gray4, col_purple, col_darkblue  },
 };
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
