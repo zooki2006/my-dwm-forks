@@ -236,6 +236,7 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void center(const Arg *arg);
 static void fillscreen(const Arg *arg);
+static void show(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
