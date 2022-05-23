@@ -857,6 +857,13 @@ focusstack(const Arg *arg)
 		restack(selmon);
 	}
 }
+void
+upfocusstack(const Arg *arg)
+{
+	focusstack(arg);
+	Client *c = selmon->sel;
+	XRaiseWindow(dpy, c->win);
+}
 
 Atom
 getatomprop(Client *c, Atom prop)
