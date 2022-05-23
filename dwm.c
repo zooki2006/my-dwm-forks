@@ -112,9 +112,6 @@ typedef struct {
 } Layout;
 
 struct Monitor {
-	char ltsymbol[16];
-	float mfact;
-	int nmaster;
 	int num;
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
@@ -169,23 +166,22 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
+static void upfocusstack(const Arg *arg);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
 static long getstate(Window w);
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
-static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
-//static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
-static Client *nexttiled(Client *c);
-static void pop(Client *);
+//static Client *nexttiled(Client *c);
+//static void pop(Client *);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
@@ -200,8 +196,6 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-//static void setlayout(const Arg *arg);
-static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
@@ -209,7 +203,6 @@ static void sigchld(int unused);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
-//static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -233,7 +226,6 @@ static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
-static void zoom(const Arg *arg);
 static void center(const Arg *arg);
 static void fillscreen(const Arg *arg);
 static void show(const Arg *arg);
@@ -318,7 +310,6 @@ applyrules(Client *c)
 int
 applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
 {
-	int baseismin;
 	Monitor *m = c->mon;
 
 	/* set minimum possible */
@@ -347,45 +338,13 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
 		*h = bh;
 	if (*w < bh)
 		*w = bh;
-	if (resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
-		if (!c->hintsvalid)
-			updatesizehints(c);
-		/* see last two sentences in ICCCM 4.1.2.3 */
-		baseismin = c->basew == c->minw && c->baseh == c->minh;
-		if (!baseismin) { /* temporarily remove base dimensions */
-			*w -= c->basew;
-			*h -= c->baseh;
-		}
-		/* adjust for aspect limits */
-		if (c->mina > 0 && c->maxa > 0) {
-			if (c->maxa < (float)*w / *h)
-				*w = *h * c->maxa + 0.5;
-			else if (c->mina < (float)*h / *w)
-				*h = *w * c->mina + 0.5;
-		}
-		if (baseismin) { /* increment calculation requires this */
-			*w -= c->basew;
-			*h -= c->baseh;
-		}
-		/* adjust for increment value */
-		if (c->incw)
-			*w -= *w % c->incw;
-		if (c->inch)
-			*h -= *h % c->inch;
-		/* restore base dimensions */
-		*w = MAX(*w + c->basew, c->minw);
-		*h = MAX(*h + c->baseh, c->minh);
-		if (c->maxw)
-			*w = MIN(*w, c->maxw);
-		if (c->maxh)
-			*h = MIN(*h, c->maxh);
-	}
 	return *x != c->x || *y != c->y || *w != c->w || *h != c->h;
 }
 
 void
 arrange(Monitor *m)
 {
+
 	if (m)
 		showhide(m->stack);
 	else for (m = mons; m; m = m->next)
@@ -395,12 +354,12 @@ arrange(Monitor *m)
 		restack(m);
 	} else for (m = mons; m; m = m->next)
 		arrangemon(m);
+
 }
 
 void
 arrangemon(Monitor *m)
 {
-	strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, sizeof m->ltsymbol);
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
 }
@@ -617,10 +576,10 @@ configurerequest(XEvent *e)
 				c->oldh = c->h;
 				c->h = ev->height;
 			}
-			if ((c->x + c->w) > m->mx + m->mw && c->isfloating)
-				c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */
-			if ((c->y + c->h) > m->my + m->mh && c->isfloating)
-				c->y = m->my + (m->mh / 2 - HEIGHT(c) / 2); /* center in y direction */
+// removethisdeh			if ((c->x + c->w) > m->mx + m->mw && c->isfloating)
+//				c->x = m->mx + (m->mw / 2 - WIDTH(c) / 2); /* center in x direction */
+//			if ((c->y + c->h) > m->my + m->mh && c->isfloating)
+//				c->y = m->my + (m->mh / 2 - HEIGHT(c) / 2); /* center in y direction */
 			if ((ev->value_mask & (CWX|CWY)) && !(ev->value_mask & (CWWidth|CWHeight)))
 				configure(c);
 			if (ISVISIBLE(c))
@@ -647,13 +606,13 @@ createmon(void)
 
 	m = ecalloc(1, sizeof(Monitor));
 	m->tagset[0] = m->tagset[1] = 1;
-	m->mfact = mfact;
-	m->nmaster = nmaster;
+//	m->mfact = mfact;
+//	m->nmaster = nmaster;
 	m->showbar = showbar;
 	m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+	//strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
 	return m;
 }
 
@@ -1004,14 +963,14 @@ grabkeys(void)
 						True, GrabModeAsync, GrabModeAsync);
 	}
 }
-
+/*
 void
 incnmaster(const Arg *arg)
 {
 	selmon->nmaster = MAX(selmon->nmaster + arg->i, 0);
 	arrange(selmon);
 }
-
+*/
 #ifdef XINERAMA
 static int
 isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
@@ -1102,8 +1061,8 @@ manage(Window w, XWindowAttributes *wa)
 	grabbuttons(c, 0);
 	if (!c->isfloating)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
-	if (c->isfloating)
-		XRaiseWindow(dpy, c->win);
+//	if (c->isfloating)
+//		XRaiseWindow(dpy, c->win);
 	attach(c);
 	attachstack(c);
 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
@@ -1234,13 +1193,14 @@ movemouse(const Arg *arg)
 	}
 }
 
-Client *
+/* Client *
 nexttiled(Client *c)
 {
 	for (; c && (c->isfloating || !ISVISIBLE(c)); c = c->next);
 	return c;
-}
+} */
 
+/*
 void
 pop(Client *c)
 {
@@ -1248,7 +1208,7 @@ pop(Client *c)
 	attach(c);
 	focus(c);
 	arrange(c->mon);
-}
+} */
 
 void
 propertynotify(XEvent *e)
@@ -1396,8 +1356,8 @@ restack(Monitor *m)
 	drawbar(m);
 	if (!m->sel)
 		return;
-	if (m->sel->isfloating || !m->lt[m->sellt]->arrange)
-		XRaiseWindow(dpy, m->sel->win);
+//	if (m->sel->isfloating || !m->lt[m->sellt]->arrange)
+//		XRaiseWindow(dpy, m->sel->win);
 	if (m->lt[m->sellt]->arrange) {
 		wc.stack_mode = Below;
 		wc.sibling = m->barwin;
@@ -1554,6 +1514,7 @@ setlayout(const Arg *arg)
 }
 */
 /* arg > 1.0 will set mfact absolutely */
+/*
 void
 setmfact(const Arg *arg)
 {
@@ -1567,7 +1528,7 @@ setmfact(const Arg *arg)
 	selmon->mfact = f;
 	arrange(selmon);
 }
-
+*/
 void
 setup(void)
 {
@@ -1711,35 +1672,7 @@ tagmon(const Arg *arg)
 		return;
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
-/*
-void
-tile(Monitor *m)
-{
-	unsigned int i, n, h, mw, my, ty;
-	Client *c;
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
-	if (n == 0)
-		return;
-
-	if (n > m->nmaster)
-		mw = m->nmaster ? m->ww * m->mfact : 0;
-	else
-		mw = m->ww;
-	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-		if (i < m->nmaster) {
-			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
-			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
-			if (my + HEIGHT(c) < m->wh)
-				my += HEIGHT(c);
-		} else {
-			h = (m->wh - ty) / (n - i);
-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
-			if (ty + HEIGHT(c) < m->wh)
-				ty += HEIGHT(c);
-		}
-}
-*/
 void
 togglebar(const Arg *arg)
 {
@@ -2154,7 +2087,7 @@ xerrorstart(Display *dpy, XErrorEvent *ee)
 	die("dwm: another window manager is already running");
 	return -1;
 }
-
+/*
 void
 zoom(const Arg *arg)
 {
@@ -2168,6 +2101,8 @@ zoom(const Arg *arg)
 			return;
 	pop(c);
 }
+*/
+
 void
 center(const Arg *arg){
 	Client *c = selmon->sel;
