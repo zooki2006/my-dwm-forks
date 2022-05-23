@@ -199,6 +199,7 @@ static const char *dynamicnamecmd[] = {"Scratchpaddynamiclist.sh"};
 static Key keys[] = {
 	/* modifier                     iey        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          SHCMD("sleep 3 && uptray.sh") }, 
 	{ MODKEY,                       XK_y,      spawn,          {.v = scratchpad } },
 	//{ MODKEY,                       XK_a,      spawn,          {.v = cmuspad } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = mpcpppad } },
@@ -254,7 +255,7 @@ static Key keys[] = {
 	{ MODKEY,             		XK_c, 	   center,           {0} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("sleep 10 && pkill -RTMIN+25 dwmblocks")},
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("sleep 3 && uptray.sh")},
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[2]} },
