@@ -229,6 +229,8 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void center(const Arg *arg);
 static void fillscreen(const Arg *arg);
 static void show(const Arg *arg);
+static void pushtop(const Arg *arg);
+static void pushbottom(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2133,8 +2135,23 @@ show(const Arg *arg)
 	setclientstate(selmon->sel, NormalState);
 	//arrange(selmon->sel->mon);
 }
+void
+pushtop(const Arg *arg)
+{
+	Client *c = selmon->sel;
+	if(!c)
+		return;
+	XRaiseWindow(dpy, c->win);
+}
 
-
+void
+pushbottom(const Arg *arg)
+{
+	Client *c = selmon->sel;
+	if(!c)
+		return;
+	XLowerWindow(dpy, c->win);
+}
 int
 main(int argc, char *argv[])
 {
