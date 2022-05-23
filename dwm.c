@@ -234,6 +234,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void center(const Arg *arg);
+static void fillscreen(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2133,7 +2135,28 @@ zoom(const Arg *arg)
 			return;
 	pop(c);
 }
+void
+center(const Arg *arg){
+	Client *c = selmon->sel;
+	if(!c)
+		return;
+	if (c->isfloating)
+	{
+		c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
+		c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+	}
+	XMoveWindow(dpy, c->win, c->x, c->y);
+}
 
+void
+fillscreen(const Arg *arg){
+	Client *c = selmon->sel;
+	Monitor *m = c->mon;
+	if(!c)
+		return;
+	resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+	XRaiseWindow(dpy, c->win);
+}
 int
 main(int argc, char *argv[])
 {
