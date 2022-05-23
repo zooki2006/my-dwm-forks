@@ -43,8 +43,9 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 //	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 //	[SchemeNorm] = { col_gray3, col_darkishblue, col_darkishblue },
-	[SchemeNorm] = { col_lightblue, col_darkishblue, col_darkishblue },
-	[SchemeSel]  = { col_gray4, col_purple, col_darkblue  },
+//	[SchemeNorm] = { col_lightblue, col_darkishblue, col_darkishblue },
+	[SchemeNorm] = { col_lightblue, col_darkishblue, col_darkblue },
+	[SchemeSel]  = { col_gray4, col_purple, col_purple  },
 };
 
 
