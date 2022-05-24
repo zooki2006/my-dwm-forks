@@ -1204,7 +1204,7 @@ void
 propertynotify(XEvent *e)
 {
 	Client *c;
-	Window trans;
+	//Window trans;
 	XPropertyEvent *ev = &e->xproperty;
 
 	if ((ev->window == root) && (ev->atom == XA_WM_NAME))
@@ -1979,7 +1979,7 @@ void
 updatewindowtype(Client *c)
 {
 	Atom state = getatomprop(c, netatom[NetWMState]);
-	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
+	//Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
 	if (state == netatom[NetWMFullscreen])
 		setfullscreen(c, 1);
 /*
