@@ -36,9 +36,6 @@ static const Rule rules[] = {
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
-static const Layout layouts[] = {
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-};
 
 /* key definitions */
 #define ALTMODKEY Mod1Mask
