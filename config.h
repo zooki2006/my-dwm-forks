@@ -113,6 +113,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+#define ALTMODKEY Mod1Mask
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -252,8 +253,8 @@ static Key keys[] = {
 //	{ MODKEY|ControlMask,           XK_j,      focusstackhid,  {.i = +1 } },
 //	{ MODKEY|ControlMask,           XK_k,      focusstackhid,  {.i = -1 } },
 //	{ Mod1Mask,           XK_Tab,      focusstackhid,  {.i = -1 } },
-	{ Mod1Mask,           XK_Tab,      focusstack,  {.i = -1 } },
-	{ Mod1Mask|ShiftMask,           XK_Tab,      focusstack,  {.i = +1 } },
+	{ ALTMODKEY,                    XK_Tab,    focusstack,     {.i = +1 } },
+	{ ALTMODKEY|ShiftMask,          XK_Tab,    focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      pushdown,       {0} },
 	{ MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = +1 } },
