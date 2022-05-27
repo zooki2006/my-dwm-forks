@@ -10,7 +10,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 #define STATUSBAR "dwmblocks"
 /* static const int user_bh            = 16;      */  /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */ 
 static const char *fonts[]          = { "monospace:size=10",
-	"Hack Nerd Font Mono:pixelsize=24:antialias=true:autohint=true",
+	"Symbols Nerd Font:pixelsize=24:antialias=true:autohint=true",
 	"Noto Color Emoji:pixelsize=12:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 #include "colours.c"
