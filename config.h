@@ -226,7 +226,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_bracketleft, spawn,     {.v = mullpad } },
 //	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
-	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pkill -USR1 redshift")}, 
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("bluelighter")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("tabc.sh autoremove -n dwmtabbed")}, 
 //	{ MODKEY|ControlMask,           XK_r,      togglescratch,  {.v = tabbedcmd } },
