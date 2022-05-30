@@ -178,7 +178,8 @@ static const char *nyrnapad[] = { "Scratchpadmutifile.sh", "class", "Nyrna", "ny
 static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
 static const char *webdispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
 static const char *dispad[] = {"Scratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
-static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
+//static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
+static const char *steampad[] = { "Scratchpad2.sh", "Steam", "Steam", "steam", NULL };
 static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
 static const char *tabbedpad[] = {"Scratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
 
@@ -223,7 +224,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_grave,  spawn,          {.v = dynamicnamecmd } },
 	{ MODKEY|ShiftMask,             XK_z,      spawn,          {.v = rofisteamcmd } },
 	{ MODKEY,                       XK_bracketleft, spawn,     {.v = mullpad } },
-	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
+//	{ MODKEY,                       XK_z,      spawn,          SHCMD("sleep 0.1 && xdo hide -N steam")}, 
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("scrot -e 'mv $f ~/screenshot'")}, 
 	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pkill -USR1 redshift")}, 
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("tabc.sh autoadd -n dwmtabbed")}, 
@@ -375,4 +376,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
