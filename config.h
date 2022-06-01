@@ -84,18 +84,6 @@ static const Rule rules[] = {
 //	{ "Steam",    NULL,     "Updating",    ~0,           1,           -1,        0  }, 
 //	{ "Steam",    NULL,     "Ready",    ~0,           1,           -1,        0  }, 
  	{ NULL,	     "keepassxc", NULL,	       0,	    1,           -1,       },//'x' },
- /*	{ NULL,	     "Modded Slay the Spire", NULL,	    0,	    1,           -1,       0 }, */
-	/* class      instance    title       tags mask     isfloating   monitor */
-/*  	{ "Gimp",     NULL,       NULL,           0,            1,           -1 },
- *	{ panel[1],   NULL,       NULL,       (1 << 9) - 1,     0,           -1 },
- *	{ NULL,	     "spterm",	  NULL,      SPTAG(0),	        1,	     -1 },
- *	{ NULL,	     "spfm",	  NULL,	     SPTAG(1),	        1,	     -1 },
- *	{ NULL,	     "keepassxc", NULL,	     SPTAG(2),	        1,           -1 },
- *	{ NULL,	     "spncspot",  NULL,	     SPTAG(3),	        1,           -1 },
- *	{ NULL,      "spcmus",    NULL,      SPTAG(4),          1,           -1 },
- *	{ NULL,      "Steam",     NULL,      SPTAG(5),          0,           -1 }, 
- *	{ NULL,      "spcastero", NULL,      SPTAG(6),          1,           -1 },
- *  	{ NULL,      "listbinds", NULL,      SPTAG(7),          1,           -1 }, */
 };
 
 /* layout(s) */
