@@ -168,7 +168,7 @@ static const char *webdispad[] = { "simplescratchpad.sh", "class", "WebCord", "w
 static const char *dispad[] = {"simplescratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
 static const char *steampad[] = { "scratchpad2.sh", "Steam", "Steam", "steam", NULL };
 static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
-static const char *tabbedpad[] = {"Scratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
+static const char *tabbedpad[] = {"simplescratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
 
 static const char *dynamicinpad[] = {"Scratchpadfiledynamic.sh", "1", NULL };
 static const char *dynamicoutpad[] = {"Scratchpadfiledynamic.sh", "0", NULL };
@@ -311,4 +311,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
