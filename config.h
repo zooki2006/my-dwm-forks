@@ -156,41 +156,23 @@ static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 
 
-/* scratchpads sh */
-static const char *scratchpad[] = { "Scratchpad.sh", "class", "terminal-scratchpad", "st", "-c", "terminal-scratchpad", "-g", "120x34", NULL };
-//static const char *cmuspad[] = { "Scratchpad.sh", "class", "spcmus", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
-static const char *mpcpppad[] = { "Scratchpad.sh", "class", "spncmpcpp", "st", "-c", "spncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
-static const char *spotpad[] = { "Scratchpad.sh", "class", "spncspot", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL };
-static const char *podpad[] = { "Scratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
-static const char *nyrnapad[] = { "Scratchpad2.sh", "nyrna", "Nyrna", "nyrna", NULL };
-//static const char *keepassxcpad[] = { "Scratchpad.sh", "title", "keepassxc", "keepassxc", NULL };
-static const char *keepassxcpad[] = { "Scratchpad2.sh", "keepassxc", "KeePassXC", "keepassxc", NULL };
-static const char *webdispad[] = { "Scratchpad.sh", "class", "WebCord", "webcord", NULL };
-static const char *dispad[] = {"Scratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
-//static const char *steampad[] = { "Scratchpadmutifile.sh", "class", "Steam", "steam", NULL };
-static const char *steampad[] = { "Scratchpad2.sh", "Steam", "Steam", "steam", NULL };
+/* scratchpads */
+static const char *scratchpad[] = { "simplescratchpad.sh", "class", "terminal-scratchpad", "st", "-c", "terminal-scratchpad", "-g", "120x34", NULL };
+//static const char *cmuspad[] = { "simplescratchpad.sh", "class", "spcmus", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+static const char *mpcpppad[] = { "simplescratchpad.sh", "class", "spncmpcpp", "st", "-c", "spncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
+static const char *spotpad[] = { "simplescratchpad.sh", "class", "spncspot", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL };
+static const char *podpad[] = { "simplescratchpad.sh", "class", "sppod", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL };
+static const char *nyrnapad[] = { "scratchpad2.sh", "nyrna", "Nyrna", "nyrna", NULL };
+static const char *keepassxcpad[] = { "scratchpad2.sh", "keepassxc", "NULL", "keepassxc", NULL };
+static const char *webdispad[] = { "simplescratchpad.sh", "class", "WebCord", "webcord", NULL };
+static const char *dispad[] = {"simplescratchpad.sh", "title", "discordtabbed", "discordtabbed.sh", NULL };
+static const char *steampad[] = { "scratchpad2.sh", "Steam", "Steam", "steam", NULL };
 static const char *mullpad[] = { "ScratchpadMULL.sh", NULL };
 static const char *tabbedpad[] = {"Scratchpad.sh", "title", "dwmtabbed", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
 
 static const char *dynamicinpad[] = {"Scratchpadfiledynamic.sh", "1", NULL };
 static const char *dynamicoutpad[] = {"Scratchpadfiledynamic.sh", "0", NULL };
 static const char *dynamicnamecmd[] = {"Scratchpaddynamiclist.sh"};
-
-/* scratchpads */
-/*First arg only serves to match against key in rules*/
-//static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", NULL}; 
-//static const char *listcmd[] = {"l", "st", "-t", "splistbinds", "-e", "binds.sh", NULL }; 
-//static const char *cmuscmd[] = {"c", "st", "-c", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
-//static const char *podcmd[] = {"a", "st", "-c", "sppod", "-g", "120x34", "-e", "castero", NULL }; 
-//static const char *ncspotcmd[] = {"w", "st", "-c", "spncspot", "-g", "120x34", "-e", "ncspot", NULL }; 
-//static const char *steamcmd[] = {"z", "steam", NULL }; 
-//static const char *keycmd[] = {"x", "keepassxc", NULL }; 
-//static const char *nyrnacmd[] = {"m", "nyrna", NULL };
-//static const char *mullvadcmd[] = {"r", "mullvad-vpn", NULL };
-//static const char *tabbedcmd[] = {"n", "tabc.sh", "autoadd", "-n", "dwmtabbed", NULL };
-//static const char *discordcmd[] = {"d", "discordtabbed.sh", NULL };
-//static const char *firefox[] = {"x", "keepassxc", NULL }; 
-//static const char *noisecmd[] = {"x", "noisetorch", NULL }; 
 
 #include "push.c"
 #include "center.c"
