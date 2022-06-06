@@ -14,4 +14,6 @@ center(const Arg *arg){
 		c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
 	}
 	XMoveWindow(dpy, c->win, c->x, c->y);
+	focus(c);
+	arrange(c->mon);
 }
