@@ -63,6 +63,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
+/* Control Media Players */
+static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
+static const char *mednextcmd[] = { "playerctl", "next", NULL };
+static const char *medprevcmd[] = { "playerctl", "previous", NULL };
+// imports
+#include <X11/XF86keysym.h>
 #include "show.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -77,6 +83,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
+	/* VOLUME */
+	{0,                             XF86XK_AudioLowerVolume,	spawn,	SHCMD("volumeControl.sh down")  },
+	{0,                             XF86XK_AudioRaiseVolume,	spawn,	SHCMD("volumeControl.sh up")  },
+	{0,                             XF86XK_AudioMute,	spawn,	SHCMD("volumeControl.sh mute")  },
+	/* Keybindings for Media play/pause/next/previous */
+	{ 0, XF86XK_AudioPlay, spawn, {.v = medplaypausecmd } },
+	{ 0, XF86XK_AudioNext, spawn, {.v = mednextcmd } },
+	{ 0, XF86XK_AudioPrev, spawn, {.v = medprevcmd } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
