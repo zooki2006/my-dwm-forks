@@ -60,8 +60,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *dmenuboxcmd[] = { "archbox", "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_darkishblue, "-nf", col_lightblue, "-sb", col_purple, "-sf", col_gray4, NULL };
+//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+
+static const char *rofirunboxcmd[] = { "archbox", "envbox", "rofi", "-show", "run", NULL };
+static const char *rofidrunboxcmd[] = { "archbox", "envbox", "rofi", "-show", "drun", NULL };
+
+
 static const char *termcmd[]  = { "kitty", NULL };
 
 
@@ -84,7 +90,8 @@ static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,                 XK_d,      spawn,          {.v = dmenuboxcmd } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = rofidrunboxcmd } },
+	{ MODKEY|ControlMask|ShiftMask,             XK_d,      spawn,          {.v = rofirunboxcmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_s,      show,           {0} },
